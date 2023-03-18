@@ -6,6 +6,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <link href="https://github.com/daniliammo/Op3nware-H5GG/blob/main/fonts/SFProText-Medium.ttf?raw=true">
+  <link href="https://github.com/daniliammo/Op3nware-H5GG/blob/main/fonts/SFProText-Semibold.ttf?raw=true">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
   <script src="https://unpkg.com/vant@2.12.54/lib/vant.min.js"></script>
@@ -48,25 +50,43 @@
 
     <div class="nav">
       <div class="navbuttons">
-        <button class="aboutbtn" onclick="openCity(event, 'aboutf')"><p class="abouttxt">About</p></button>
-        <button class="functionsbtn" onclick="openCity(event, 'functionsf')"><p class="functionstxt">Rage</p></button>
-        <button class="skinchangerbtn" onclick="openCity(event, 'skinchangerf')" ><p class="skinchangertxt">SC(beta)</p></button>
-        <button class="miscbtn" onclick="openCity(event, 'miscf')"><p class="misctxt">Misc</p></button>
+        <button class="aboutbtn" onclick="openCity(event, 'legitfuncions')"><p class="functionsnames">Legit</p></button>
+        <button class="functionsbtn" onclick="openCity(event, 'functionsf')"><p class="functionsnames">Rage</p></button>
+        <button class="skinchangerbtn" onclick="openCity(event, 'skinchangerf')" ><p class="functionsnames">SC(beta)</p></button>
+        <button class="miscbtn" onclick="openCity(event, 'miscf')"><p class="functionsnames">Misc</p></button>
       </div>
     </div>
   
     <div class="main">
       <div class="backgroundphoto"></div>
 
-
-
       <div id="aboutf" class="maincontent">
         
         <div class="aboutcontent">
           <div class="dev">
-            <a href="https://t.me/mobeansoft" class="dev1">Mobean</a>
-            <a href="https://t.me/ipasofts18" class="dev2">Fanteon</a>
+            <a href="https://t.me/Op3nware" class="developer">Op3nware Telegram</a>
           </div>
+        </div>
+
+      </div>
+
+      <div id="legitfuncions" class="fcontent">
+        <div class="functionsf">
+
+          <div class="RHgrp">
+            <p class="fnnc">Team Radar</p>
+            <div class="switch">
+              <input class="TeamRadar" type="checkbox" onclick="RadarTM()">
+            </div>
+          </div>
+
+          <div class="AFgrp">
+            <p class="fnnc">Anti Flash</p>
+            <div class="switch">
+              <input class="AntiFlash" type="checkbox" onclick="AntiF()">
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -75,12 +95,6 @@
 
       <div id="functionsf" class="fcontent">
         <div class="functionsf">
-          <div class="RHgrp">
-            <p class="fnnc">Radar Hack</p>
-            <div class="switch">
-              <input class="TeamRadar" type="checkbox" onclick="RadarTM()">
-            </div>
-          </div>
 
           <div class="FRgrp">
             <p class="fnnc">Fire Rate</p>
@@ -122,13 +136,6 @@
             <p class="fnnc">No Grenade</p>
             <div class="switch">
               <input class="AntiFlash" type="checkbox" onclick="NoGrenade()">
-            </div>
-          </div>
-
-          <div class="AFgrp">
-            <p class="fnnc">Anti Flash</p>
-            <div class="switch">
-              <input class="AntiFlash" type="checkbox" onclick="AntiF()">
             </div>
           </div>
         
@@ -363,9 +370,13 @@
         <div class="miscfcontent">
           <p class="mp3txt">Coolio - Gangsta's Paradise</p>
           <audio id="audio" src="https://rmf.muzmo.cc/get/music/20170906/Coolio_-_Gangstas_Paradise_48269950.mp3" controls="true" class="audio-1"></audio>
-
         </div>
-        
+
+        <div class="miscfcontent">
+          <p class="mp3txt"> DVRST - Close Eyes (Slowed Reverb) (Slowed Reverb)</p>
+          <audio id="audio" src="https://rmf.muzmo.cc/get/music/20211029/DVRST_-_Close_Eyes_Slowed_Reverb_Slowed_Reverb_73239989.mp3" controls="true" class="audio-1"></audio>
+        </div>
+   
       </div>
     </div>
   </div>
@@ -1222,51 +1233,28 @@
   user-select: none;
 }
 
-.dev1
+.developer
 {
   position: absolute;
-  font-family: 'Kaisei HarunoUmi', serif;
-  font-style: normal;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'SF Pro Text', sans-serif;
   font-size: 26px;
   text-decoration: none;
   width: 100px;
-  height: 44px;
-  left: 45px;
+  height: 100px;
+  left: 15px;
   top: 40px;
-  line-height: 16px;
+  line-height: 32px;
   display: flex;
   align-items: center;
   text-align: center;
-
-  color: #FFFFFF;
-
-}
-
-.dev2
-{
-  position: absolute;
-  font-family: 'Kaisei HarunoUmi', serif;
-  font-style: normal;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 26px;
-  color: white;
-  text-decoration: none;
-  width: 100px;
-  height: 44px;
-  left: 45px;
-  top: 100px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  color: #FFF;
 }
 
 .menu
 {
   position: relative;
   width: 425px;
-  height: 399px;
+  height: 400px;
   zoom: 85%;
 }
 
@@ -1288,18 +1276,18 @@
 {
   position: relative;
   width: 425px;
-  height: 66px;
+  height: 65px;
   top: 0px;
-  background: linear-gradient(274.61deg, rgba(0, 0, 0, 0) 69.65%, #030A9F 98.18%), linear-gradient(96.91deg, rgba(0, 0, 0, 0) 74.29%, #030A9F 98.06%), #000000;
-  border-radius: 29px;
-  border: 2px solid #000000;
+  background: linear-gradient(274.61deg, rgba(0, 0, 0, 0) 69.65%, #000 98.18%), linear-gradient(96.91deg, rgba(0, 0, 0, 0) 74.29%, #000 98.06%), #000000;
+  border-radius: 15px;
+  border: 5px solid #000000;
 }
 
 .navbuttons
 {
   position: relative;
   width: 425px;
-  height: 66px;
+  height: 65px;
   left: 3.5px;
 }
 
@@ -1312,16 +1300,17 @@
   box-sizing: border-box;
   top: 10px;
 
-  background: linear-gradient(180deg, #341C66 0%, #744ACD 0%, #503B7C 0.01%, rgba(99, 44, 216, 0.75) 39.06%, #765EA9 72.4%, #2F195C 100%);
-  border: 1px solid #242270;
+  background: linear-gradient(180deg, #000 0%, #000 0%, #000 0.01%, rgba(0, 0, 0, 0.75) 39.06%, #000 72.4%, #000 100%);
+  border: 3px solid #57b846;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.4);
-  border-radius: 31px;
+  border-radius: 15px;
 }
 
-.miscbtn:hover, .skinchangerbtn:hover, .functionsbtn:hover, .aboutbtn:hover{
+.miscbtn:hover, .skinchangerbtn:hover, .functionsbtn:hover, .aboutbtn:hover
+{
   transition: .1s;
-  background: linear-gradient(180deg, #000000 -87.78%, rgba(0, 0, 0, 0.05) 80%), linear-gradient(178.8deg, #623BB7 1.08%, #744ACD 1.08%, #503B7C 1.09%, rgba(95, 54, 181, 0.81) 45.3%, #301C5B 83.03%, #181127 114.27%);
-  border: 2px solid #322FAB;
+  background: linear-gradient(180deg, #000 -87.78%, rgba(0, 0, 0, 0.05) 80%), linear-gradient(178.8deg, #000 1.08%, #000 1.08%, #000 1.09%, rgba(0, 54, 0, 0.81) 45.3%, #000 83.03%, #000 114.27%);
+  border: 1px solid #57b846;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
@@ -1354,61 +1343,25 @@
   user-select: none;
   position: relative;
   background: #000000;
-  border-radius: 52px;
+  border-radius: 15px;
   width: 425px;
   height: 319px;
   top: 14px;
   border: 2px solid #000000;
 }
 
-.abouttxt, .functionstxt, .skinchangertxt, .misctxt{
+.functionsnames
+{
   position: absolute;
-  font-family: 'Russo One', sans-serif;
-  font-size: 14px;
-  line-height: 16px;
+  font-family: 'SF Pro', sans-serif;
+  font-size: 18px;
+  line-height: 0px;
   text-align: center;
-}
-.abouttxt
-{
-  width: 86px;
-  height: 25px;
-  left: 6px;
-  top: 4px;
-
-  background: linear-gradient(269.54deg, #FFFFFF 49.9%, #FFFFFF 49.9%, #000000 99.5%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.functionstxt
-{
-  width: 88px;
-  height: 25px;
-  left: 5px;
-  top: 4px;
-  color: #D9D9D9;
-}
-
-.skinchangertxt
-{
   width: 88px;
   height: 25px;
   left: 4px;
   top: 4px;
-  color: #D9D9D9;
-}
-
-.misctxt
-{
-  position: absolute;
-  width: 88px;
-  height: 25px;
-  left: 5px;
-  top: 4px;
-
-  background: linear-gradient(90deg, #D9D9D9 50%, #000000 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #FFF;
 }
 
 
@@ -1422,7 +1375,7 @@
 .fnnc
 {
   color: #FFF;  
-  font-family: 'Kadwa', serif;
+  font-family: 'SF Pro', sans-serif;
   font-weight: 700;
   font-size: 24px;
   margin: 0%;
@@ -1440,16 +1393,19 @@
   padding: 10px;
 }
 
-.fcontent::-webkit-scrollbar {
+.fcontent::-webkit-scrollbar 
+{
   width: 14px;
 }
 
-.fcontent::-webkit-scrollbar-track {
+.fcontent::-webkit-scrollbar-track 
+{
   background-color: #ff007b5a;
   border-radius: 100px;
 }
 
-.fcontent::-webkit-scrollbar-thumb {
+.fcontent::-webkit-scrollbar-thumb 
+{
   background-color: #6b4182d1;
   border-radius: 100px;
 }
@@ -1477,7 +1433,7 @@ input[type="checkbox"]
 
 input:checked[type="checkbox"]
 {
-  background: #40e551;
+  background: #57b846;
 }
 
 input[type="checkbox"]:before
@@ -1523,17 +1479,17 @@ input:checked[type="checkbox"]:before
   position: relative;
   display: inline-block;
   text-align: center;
-  font-family: 'Kadwa', serif;
-  color: white;
+  font-family: 'SF Pro', sans-serif;
+  color: #FFF;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
   width: 100px;
-  height: 26px;
+  height: 25px;
   margin-right: 25px;
   margin-left: 25px;
   background: color: #FFF;
   border: 2px solid #FFF;
-  border-radius: 50px
+  border-radius: 15px
 }
 
 
@@ -1544,21 +1500,24 @@ input:checked[type="checkbox"]:before
   text-align: center;
   top: 5px;
 
-  color: #FFF;  
-  font-family: 'Kadwa', serif;
+  color: #FFF;
+  font-family: 'SF Pro', sans-serif;
   font-weight: 700;
   font-size: 22px;
 }
 
 
-audio::-webkit-media-controls-panel {
+audio::-webkit-media-controls-panel 
+{
   z-index: 5;
   background-color: #6a3eca;
   border: 2px solid #000000;
 }
 
-.audio-1{
-  zoom: 50%;
+.audio-1
+{
+  border: 3px solid #000;
+  border-radius: 15px
 }
 
 
@@ -1573,12 +1532,12 @@ audio::-webkit-media-controls-panel {
 .skinbtn:hover{
   transition: .1s;
   background: color: #57b846;
-  border: 2px solid #BE1447;
+  border: 2px solid #57b846;
 }
   .fncbutton:hover{
     transition: .1s;
     background: linear-gradient(67.42deg,#1C1C1C -8.05%,#1C1C1C -8.04%,#CB89FF 101.3%);
-    border: 2px solid #BE1447;
+    border: 2px solid #57b846;
     
   }
 </style>
