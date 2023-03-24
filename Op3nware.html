@@ -11,6 +11,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
   <script src="https://unpkg.com/vant@2.12.54/lib/vant.min.js"></script>
+  <script>
+    h5gg.require(7.9); 
+    var h5frida=h5gg.loadPlugin("h5frida", "h5frida-15.1.24.dylib");
+    if(!h5frida) throw "Failed to load h5frida plugin";
+
+    function ActiveCodePatch(fpath, vaddr, bytes) {
+        if(!h5frida.ActiveCodePatch(fpath, vaddr, bytes)) {
+            var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
+            alert(fpath+":0x"+vaddr.toString(16)+"-修改失败!\n" + fpath+":0x"+vaddr.toString(16)+"-PatchFailed!\n" + result);return false;
+        } return true;
+    }
+    function DeactiveCodePatch(fpath, vaddr, bytes) {
+        return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
+    }
+
+    /*HERE IS OUR OFFSET PATCHING CODE*/
+
+    //public bool get_CanJump() -> 0x1B39598
+    //Enable a hack at 0x1B39598 with HEX : 200080D2C0035FD6
+    ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", 0xC01B1C, "C0035FD6");
+    ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", 0xC0208C, "C0035FD6");
+  </script>
   <title>Op3nware</title>
 </head>
 <body>
@@ -390,7 +412,13 @@
 
 <script>
 
-     
+  /*HERE IS OUR OFFSET PATCHING CODE*/
+
+  //public bool get_CanJump() -> 0x1B39598
+  //Enable a hack at 0x1B39598 with HEX : 200080D2C0035FD6
+  // internal virtual void OnCheatingDetected() { }
+  ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", 0x135DF60, "0xC0035FD6");
+
 
   function g1(){
     var oldskinid = prompt(" ");
