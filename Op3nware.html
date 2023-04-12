@@ -1,53 +1,35 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link href="https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-  <link href="https://github.com/daniliammo/Op3nware-H5GG/blob/main/fonts/SFProText-Medium.ttf?raw=true">
-  <link href="https://github.com/daniliammo/Op3nware-H5GG/blob/main/fonts/SFProText-Semibold.ttf?raw=true">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
-  <script src="https://unpkg.com/vant@2.12.54/lib/vant.min.js"></script>
-  <script>
-    h5gg.require(7.9); 
-    var h5frida=h5gg.loadPlugin("h5frida", "h5frida-15.1.24.dylib");
-    if(!h5frida) throw "Failed to load h5frida plugin";
-
-    function ActiveCodePatch(fpath, vaddr, bytes) {
-        if(!h5frida.ActiveCodePatch(fpath, vaddr, bytes)) {
-            var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
-            alert(fpath+":0x"+vaddr.toString(16)+"-修改失败!\n" + fpath+":0x"+vaddr.toString(16)+"-PatchFailed!\n" + result);return false;
-        } return true;
-    }
-    function DeactiveCodePatch(fpath, vaddr, bytes) {
-        return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
-    }
-
-    /*HERE IS OUR OFFSET PATCHING CODE*/
-
-    //public bool get_CanJump() -> 0x1B39598
-    //Enable a hack at 0x1B39598 with HEX : 200080D2C0035FD6
-    ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", 0xC01B1C, "C0035FD6");
-    ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", 0xC0208C, "C0035FD6");
-  </script>
-  <title>Op3nware</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href="https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+	<link href="https://github.com/daniliammo/Op3nware-H5GG/blob/main/fonts/SFProText-Medium.ttf?raw=true">
+	<link href="https://github.com/daniliammo/Op3nware-H5GG/blob/main/fonts/SFProText-Semibold.ttf?raw=true">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
+	<script src="https://unpkg.com/vant@2.12.54/lib/vant.min.js"></script>
+	<script src="https://raw.githubusercontent.com/daniliammo/Op3nware-H5GG/main/scripts/SO2Bypass.js"></script>
+	<title>Op3nware</title>
 </head>
 <body>
-  <style>
-.button:active {
-         transform: translateY(2px);
-		 background: #000;
-    }
+	<style>
 
-        el-button {
-            width: 142px;
-            height: 30px;
-            position: left;
-            bottom: 10%;
-            right: 50px;
+.button:active 
+{
+		transform: translateY(2px);
+		background: #000;
+	}
+
+		el-button 
+		{
+			width: 142px;
+			height: 30px;
+			position: left;
+			bottom: 10%;
+			right: 50px;
 			font-size: 14px;
 			padding: 5px 5px;
 			line-height: 14px;
@@ -55,353 +37,355 @@
 			background-color: #b8d1f2;
 		}
 
-		.el-button:hover {
+		.el-button:hover 
+		{
 			color: #000;
 			background-color: #B8D1F2;
 		}
 
 		.el-button:focus,
-		.el-button:hover {
+		.el-button:hover 
+		{
 			color: #000;
 			background-color: #B8D1F2;
 		}
-  </style>
+	</style>
 
-  <div class="menu">
-
-
-    <div class="nav">
-      <div class="navbuttons">
-        <button class="aboutbtn" onclick="openCity(event, 'legitfuncions')"><p class="functionsnames">Legit</p></button>
-        <button class="functionsbtn" onclick="openCity(event, 'functionsf')"><p class="functionsnames">Rage</p></button>
-        <button class="skinchangerbtn" onclick="openCity(event, 'skinchangerf')" ><p class="functionsnames">SC(beta)</p></button>
-        <button class="miscbtn" onclick="openCity(event, 'miscf')"><p class="functionsnames">Misc</p></button>
-      </div>
-    </div>
-  
-    <div class="main">
-      <div class="backgroundphoto"></div>
-
-      <div id="aboutf" class="maincontent">
-        
-        <div class="aboutcontent">
-          <div class="dev">
-            <a href="https://t.me/Op3nware" class="developer">Op3nware Telegram</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div id="legitfuncions" class="fcontent">
-        <div class="functionsf">
-
-          <div class="RHgrp">
-            <p class="fnnc">Team Radar</p>
-            <div class="switch">
-              <input class="TeamRadar" type="checkbox" onclick="RadarTM()">
-            </div>
-          </div>
-
-          <div class="AFgrp">
-            <p class="fnnc">Anti Flash</p>
-            <div class="switch">
-              <input class="AntiFlash" type="checkbox" onclick="AntiF()">
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+	<div class="menu">
 
 
+	<div class="nav">
+		<div class="navbuttons">
+		<button class="aboutbtn" onclick="openCity(event, 'legitfuncions')"><p class="functionsnames">Legit</p></button>
+		<button class="functionsbtn" onclick="openCity(event, 'functionsf')"><p class="functionsnames">Rage</p></button>
+		<button class="skinchangerbtn" onclick="openCity(event, 'skinchangerf')" ><p class="functionsnames">SC(beta)</p></button>
+		<button class="miscbtn" onclick="openCity(event, 'miscf')"><p class="functionsnames">Misc</p></button>
+		</div>
+	</div>
+	
+	<div class="main">
+		<div class="backgroundphoto"></div>
 
-      <div id="functionsf" class="fcontent">
-        <div class="functionsf">
+		<div id="aboutf" class="maincontent">
+		
+		<div class="aboutcontent">
+			<div class="dev">
+			<a href="https://t.me/Op3nware" class="developer">Op3nware Telegram</a>
+			</div>
+		</div>
 
-          <div class="FRgrp">
-            <p class="fnnc">Fire Rate</p>
-            <div class="switch">
-              <input class="FireRate" type="checkbox" onclick="FireRate()">
-            </div> 
-          </div>
+		</div>
 
+		<div id="legitfuncions" class="fcontent">
+		<div class="functionsf">
 
-          <div class="NRgrp">
-            <p class="fnnc">No Recoil</p>
-            <div class="switch">
-              <input class="NoRecoil" type="checkbox" onclick="NoRecoil()">
-            </div>
-          </div>
-            
-          <div class="IAgrp">
-            <p class="fnnc">Infinity Ammo</p>
-            <div class="switch">
-              <input class="InfinityAmmo" type="checkbox" onclick="InfinityA()">
-            </div>
-          </div>
-        
-          <div class="MHgrp">
-            <p class="fnnc">Money Hack</p>
-            <div class="switch">
-              <input class="MoneyHack" type="checkbox" onclick="MoneyHack()">
-            </div>
-          </div>
-        
-          <div class="BAgrp">
-            <p class="fnnc">Buy Anywhere</p>
-            <div class="switch">
-              <input class="BuyAnywhere" type="checkbox" onclick="BuyAnywhere()">
-            </div>
-          </div>
-        
-          <div class="NGgrp">
-            <p class="fnnc">No Grenade</p>
-            <div class="switch">
-              <input class="AntiFlash" type="checkbox" onclick="NoGrenade()">
-            </div>
-          </div>
-        
-          <div class="AHgrp">
-            <p class="fnnc">Anti HE</p>
-            <div class="switch">
-              <input class="AntiHE" type="checkbox" onclick="AntiHE()">
-            </div> 
-          </div>
+			<div class="RHgrp">
+			<p class="fnnc">Team Radar</p>
+			<div class="switch">
+				<input class="TeamRadar" type="checkbox" onclick="RadarTM()">
+			</div>
+			</div>
 
-          <div class="FGgrp">
-            <p class="fnnc">Fast Game</p>
-            <div class="switch">
-              <input class="FastGame" type="checkbox" onclick="FastGame()">
-            </div> 
-          </div>
+			<div class="AFgrp">
+			<p class="fnnc">Anti Flash</p>
+			<div class="switch">
+				<input class="AntiFlash" type="checkbox" onclick="AntiF()">
+			</div>
+			</div>
 
-          <div class="FPgrp">
-            <p class="fnnc">Fast Plant</p>
-            <div class="switch">
-              <input class="FastPlant" type="checkbox" onclick="FastPlant()">
-            </div> 
-          </div>
+		</div>
 
-          <div class="WSgrp">
-            <p class="fnnc">WallShot</p>
-            <div class="switch">
-              <input class="WallShot" type="checkbox" onclick="WallShot()">
-            </div> 
-          </div>
-
-          <div class="STgrp">
-            <p class="fnnc">Stop Time</p>
-            <div class="switch">
-              <input class="StopTime" type="checkbox" onclick="StopTime()">
-            </div> 
-          </div>
-
-          <div class="JHgrp">
-            <p class="fnnc">Jump Hack</p>
-            <div class="switch">
-              <input class="JumpHack" type="checkbox" onclick="JumpHack()">
-            </div> 
-          </div>
-
-          <div class="FFgrp">
-            <p class="fnnc">Friendly Fire</p>
-            <div class="switch">
-              <input class="FriendlyFire" type="checkbox" onclick="FriendlyFire()">
-            </div> 
-          </div>
-
-          <div class="DRTSgrp">
-            <p class="fnnc">Don't Return</p> 
-            <div class="switch">
-              <input class="DontSpawn" type="checkbox" onclick="DontSpawn()">
-            </div> 
-          </div>
-        </div>
-      </div>
-
-
-      <div id="skinchangerf" class="fcontent">
-        
-        <div class="skinchangercontent">
-          <div>
-            <p class="glovestxt">Gloves</p>
-            <van-button onclick="g1()" class="skinbtn">Burning Fists</van-button>
-            <van-button onclick="g2()" class="skinbtn">Punk</van-button>
-            <p>
-            <van-button onclick="g3()" class="skinbtn">Champion</van-button>
-            <van-button onclick="g4()" class="skinbtn">Steam Rider</van-button>
-            <p>
-            <van-button onclick="g5()" class="skinbtn">Phoenix Risen</van-button>
-            <van-button onclick="g6()" class="skinbtn">Autumn</van-button>
-            <p>
-            <van-button onclick="g7()" class="skinbtn">Geometric</van-button>
-            <van-button onclick="g8()" class="skinbtn">Retro Wave</van-button>
-            <p>
-            <van-button onclick="g9()" class="skinbtn">Living Flame</van-button>
-            <van-button onclick="g10()" class="skinbtn">Neuro</van-button>
-            <p>
-            <van-button onclick="g11()" class="skinbtn">Acid</van-button>
-            <van-button onclick="g12()" class="skinbtn">Camo</van-button>
-            <p>
-            <van-button onclick="g13()" class="skinbtn" >Fossil</van-button>
-            <van-button onclick="g14()" class="skinbtn">HandCraft</van-button>
-            <p>
-            <van-button onclick="g15()" class="skinbtn">Raider</van-button>
-            <van-button onclick="g16()" class="skinbtn">Thug</van-button>
-
-
-            <p class="karambittxt">Karambit</p>
-            <van-button onclick="karambitgold()" class="skinbtn">Gold</van-button>
-            <van-button onclick="karambitclaw()" class="skinbtn">Claw</van-button>
-            <p>
-            <van-button onclick="karambitdragongalss()" class="skinbtn">DragonGlass</van-button>
-            <van-button onclick="karambitscratch()" class="skinbtn">Scratch</van-button>
-            <p>
-            <van-button onclick="karmbituniverse()" class="skinbtn">Universe</van-button>
-            <van-button onclick="karambitcoldflame()" class="skinbtn">Cold Flame</van-button>
-            <p>
-            <van-button onclick="karambitfrozen()" class="skinbtn">Frozen</van-button>
-            <van-button onclick="karambitsnowcamo()" class="skinbtn">Snow Camo</van-button>
-              <p>
-            <van-button onclick="karambityearoftiger()" class="skinbtn">Year of Tiger</van-button> 
-            
-            
-
-            <p class="bayonettxt">Bayonet</p>
-            <van-button onclick="m1()" class="skinbtn">BlueBlood</van-button>
-            <van-button onclick="m2()" class="skinbtn">Kumo</van-button>
-            <p>
-            <van-button onclick="m3()" class="skinbtn">Universe</van-button>
-            <van-button onclick="m4()" class="skinbtn">Frozen</van-button>
-            <p>
-            <van-button onclick="m5()" class="skinbtn">DragonGlass</van-button>
-            <van-button onclick="m6()" class="skinbtn">Scratch</van-button>
-            <p>
-            <van-button onclick="m7()" class="skinbtn">Acient</van-button>
+		</div>
 
 
 
-            <p class="jkommandotxt">jKommando</p>
-            <van-button onclick="j1()" class="skinbtn">Ancient</van-button>
-            <van-button onclick="j2()" class="skinbtn">Reaper</van-button>
-            <p>
-            <van-button onclick="j3()" class="skinbtn">Floral</van-button>
-            <van-button onclick="j4()" class="skinbtn">Luxury</van-button>
-            <p>
-            <van-button onclick="j5()" class="skinbtn">Frozen</van-button>
-            <van-button onclick="j6()" class="skinbtn">Augustite</van-button>
+		<div id="functionsf" class="fcontent">
+		<div class="functionsf">
+
+			<div class="FRgrp">
+			<p class="fnnc">Fire Rate</p>
+			<div class="switch">
+				<input class="FireRate" type="checkbox" onclick="FireRate()">
+			</div> 
+			</div>
+
+
+			<div class="NRgrp">
+			<p class="fnnc">No Recoil</p>
+			<div class="switch">
+				<input class="NoRecoil" type="checkbox" onclick="NoRecoil()">
+			</div>
+			</div>
+			
+			<div class="IAgrp">
+			<p class="fnnc">Infinity Ammo</p>
+			<div class="switch">
+				<input class="InfinityAmmo" type="checkbox" onclick="InfinityA()">
+			</div>
+			</div>
+		
+			<div class="MHgrp">
+			<p class="fnnc">Money Hack</p>
+			<div class="switch">
+				<input class="MoneyHack" type="checkbox" onclick="MoneyHack()">
+			</div>
+			</div>
+		
+			<div class="BAgrp">
+			<p class="fnnc">Buy Anywhere</p>
+			<div class="switch">
+				<input class="BuyAnywhere" type="checkbox" onclick="BuyAnywhere()">
+			</div>
+			</div>
+		
+			<div class="NGgrp">
+			<p class="fnnc">No Grenade</p>
+			<div class="switch">
+				<input class="AntiFlash" type="checkbox" onclick="NoGrenade()">
+			</div>
+			</div>
+		
+			<div class="AHgrp">
+			<p class="fnnc">Anti HE</p>
+			<div class="switch">
+				<input class="AntiHE" type="checkbox" onclick="AntiHE()">
+			</div> 
+			</div>
+
+			<div class="FGgrp">
+			<p class="fnnc">Fast Game</p>
+			<div class="switch">
+				<input class="FastGame" type="checkbox" onclick="FastGame()">
+			</div> 
+			</div>
+
+			<div class="FPgrp">
+			<p class="fnnc">Fast Plant</p>
+			<div class="switch">
+				<input class="FastPlant" type="checkbox" onclick="FastPlant()">
+			</div> 
+			</div>
+
+			<div class="WSgrp">
+			<p class="fnnc">WallShot</p>
+			<div class="switch">
+				<input class="WallShot" type="checkbox" onclick="WallShot()">
+			</div> 
+			</div>
+
+			<div class="STgrp">
+			<p class="fnnc">Stop Time</p>
+			<div class="switch">
+				<input class="StopTime" type="checkbox" onclick="StopTime()">
+			</div> 
+			</div>
+
+			<div class="JHgrp">
+			<p class="fnnc">Jump Hack</p>
+			<div class="switch">
+				<input class="JumpHack" type="checkbox" onclick="JumpHack()">
+			</div> 
+			</div>
+
+			<div class="FFgrp">
+			<p class="fnnc">Friendly Fire</p>
+			<div class="switch">
+				<input class="FriendlyFire" type="checkbox" onclick="FriendlyFire()">
+			</div> 
+			</div>
+
+			<div class="DRTSgrp">
+			<p class="fnnc">Don't Return</p> 
+			<div class="switch">
+				<input class="DontSpawn" type="checkbox" onclick="DontSpawn()">
+			</div> 
+			</div>
+		</div>
+		</div>
+
+
+		<div id="skinchangerf" class="fcontent">
+		
+		<div class="skinchangercontent">
+			<div>
+			<p class="glovestxt">Gloves</p>
+			<van-button onclick="g1()" class="skinbtn">Burning Fists</van-button>
+			<van-button onclick="g2()" class="skinbtn">Punk</van-button>
+			<p>
+			<van-button onclick="g3()" class="skinbtn">Champion</van-button>
+			<van-button onclick="g4()" class="skinbtn">Steam Rider</van-button>
+			<p>
+			<van-button onclick="g5()" class="skinbtn">Phoenix Risen</van-button>
+			<van-button onclick="g6()" class="skinbtn">Autumn</van-button>
+			<p>
+			<van-button onclick="g7()" class="skinbtn">Geometric</van-button>
+			<van-button onclick="g8()" class="skinbtn">Retro Wave</van-button>
+			<p>
+			<van-button onclick="g9()" class="skinbtn">Living Flame</van-button>
+			<van-button onclick="g10()" class="skinbtn">Neuro</van-button>
+			<p>
+			<van-button onclick="g11()" class="skinbtn">Acid</van-button>
+			<van-button onclick="g12()" class="skinbtn">Camo</van-button>
+			<p>
+			<van-button onclick="g13()" class="skinbtn" >Fossil</van-button>
+			<van-button onclick="g14()" class="skinbtn">HandCraft</van-button>
+			<p>
+			<van-button onclick="g15()" class="skinbtn">Raider</van-button>
+			<van-button onclick="g16()" class="skinbtn">Thug</van-button>
+
+
+			<p class="karambittxt">Karambit</p>
+			<van-button onclick="karambitgold()" class="skinbtn">Gold</van-button>
+			<van-button onclick="karambitclaw()" class="skinbtn">Claw</van-button>
+			<p>
+			<van-button onclick="karambitdragongalss()" class="skinbtn">DragonGlass</van-button>
+			<van-button onclick="karambitscratch()" class="skinbtn">Scratch</van-button>
+			<p>
+			<van-button onclick="karmbituniverse()" class="skinbtn">Universe</van-button>
+			<van-button onclick="karambitcoldflame()" class="skinbtn">Cold Flame</van-button>
+			<p>
+			<van-button onclick="karambitfrozen()" class="skinbtn">Frozen</van-button>
+			<van-button onclick="karambitsnowcamo()" class="skinbtn">Snow Camo</van-button>
+				<p>
+			<van-button onclick="karambityearoftiger()" class="skinbtn">Year of Tiger</van-button> 
+			
+			
+
+			<p class="bayonettxt">Bayonet</p>
+			<van-button onclick="m1()" class="skinbtn">BlueBlood</van-button>
+			<van-button onclick="m2()" class="skinbtn">Kumo</van-button>
+			<p>
+			<van-button onclick="m3()" class="skinbtn">Universe</van-button>
+			<van-button onclick="m4()" class="skinbtn">Frozen</van-button>
+			<p>
+			<van-button onclick="m5()" class="skinbtn">DragonGlass</van-button>
+			<van-button onclick="m6()" class="skinbtn">Scratch</van-button>
+			<p>
+			<van-button onclick="m7()" class="skinbtn">Acient</van-button>
 
 
 
-            <p class="buterflytxt">Butterfly</p>
-            <van-button onclick="b1()" class="skinbtn">DragonGlass</van-button>
-            <van-button onclick="b2()" class="skinbtn">Legacy</van-button>
-            <p>
-            <van-button onclick="b3()" class="skinbtn">FireStorm</van-button>
-            <van-button onclick="b4()" class="skinbtn">BlackWidow</van-button>
-            <p>
-            <van-button onclick="b5()" class="skinbtn">Starfall</van-button>
-            <van-button onclick="b6()" class="skinbtn">ColdFlame</van-button>
-            <p>
-            <van-button onclick="b7()" class="skinbtn">Kumo</van-button>
+			<p class="jkommandotxt">jKommando</p>
+			<van-button onclick="j1()" class="skinbtn">Ancient</van-button>
+			<van-button onclick="j2()" class="skinbtn">Reaper</van-button>
+			<p>
+			<van-button onclick="j3()" class="skinbtn">Floral</van-button>
+			<van-button onclick="j4()" class="skinbtn">Luxury</van-button>
+			<p>
+			<van-button onclick="j5()" class="skinbtn">Frozen</van-button>
+			<van-button onclick="j6()" class="skinbtn">Augustite</van-button>
 
 
 
-            <p class="fliptxt">Flip Knife</p>
-            <van-button onclick="f1()" class="skinbtn">DragonGlass</van-button>
-            <van-button onclick="f2()" class="skinbtn">Arctic</van-button>
-            <p>
-            <van-button onclick="f3()" class="skinbtn">StoneCold</van-button>
-            <van-button onclick="f4()" class="skinbtn">Vortex</van-button>
-            <p>
-            <van-button onclick="f5()" class="skinbtn">Frozen</van-button>
-            <van-button onclick="f6()" class="skinbtn">SnowCamo</van-button>
-            <p>
-            <van-button onclick="f7()" class="skinbtn">HolidayFrost</van-button>
+			<p class="buterflytxt">Butterfly</p>
+			<van-button onclick="b1()" class="skinbtn">DragonGlass</van-button>
+			<van-button onclick="b2()" class="skinbtn">Legacy</van-button>
+			<p>
+			<van-button onclick="b3()" class="skinbtn">FireStorm</van-button>
+			<van-button onclick="b4()" class="skinbtn">BlackWidow</van-button>
+			<p>
+			<van-button onclick="b5()" class="skinbtn">Starfall</van-button>
+			<van-button onclick="b6()" class="skinbtn">ColdFlame</van-button>
+			<p>
+			<van-button onclick="b7()" class="skinbtn">Kumo</van-button>
 
 
 
-            <p class="kunaitxt">Kunai</p>
-            <van-button onclick="k1()" class="skinbtn">Bone</van-button>
-            <van-button onclick="k2()" class="skinbtn">Luxury</van-button>
-            <p>
-            <van-button onclick="k3()" class="skinbtn">Poison</van-button>
-            <van-button onclick="k4()" class="skinbtn">Radiation</van-button>
-            <p>
-            <van-button onclick="k5()" class="skinbtn">Reaper</van-button>
-            <van-button onclick="k6()" class="skinbtn">ColdFlame</van-button>
-            <p>
-            <van-button onclick="k7()" class="skinbtn">SnowCamo</van-button>
-            <van-button onclick="k8()" class="skinbtn">Augustite</van-button>
+			<p class="fliptxt">Flip Knife</p>
+			<van-button onclick="f1()" class="skinbtn">DragonGlass</van-button>
+			<van-button onclick="f2()" class="skinbtn">Arctic</van-button>
+			<p>
+			<van-button onclick="f3()" class="skinbtn">StoneCold</van-button>
+			<van-button onclick="f4()" class="skinbtn">Vortex</van-button>
+			<p>
+			<van-button onclick="f5()" class="skinbtn">Frozen</van-button>
+			<van-button onclick="f6()" class="skinbtn">SnowCamo</van-button>
+			<p>
+			<van-button onclick="f7()" class="skinbtn">HolidayFrost</van-button>
 
 
 
-            <p class="scorpiontxt">Scorpion</p>
-            <van-button onclick="s1()" class="skinbtn">Veil</van-button>
-            <van-button onclick="s2()" class="skinbtn">Sea Eye</van-button>
-            <p>
-            <van-button onclick="s3()" class="skinbtn">Scratch</van-button>
-            <van-button onclick="s4()" class="skinbtn">Starfall</van-button>
-            <p>
-            <van-button onclick="s5()" class="skinbtn">ColdFlame</van-button>
-            <van-button onclick="s6()" class="skinbtn">HolidayFrost</van-button>
-
-
-            <p class="tantotxt">Tanto</p>
-            <van-button onclick="t1()" class="skinbtn">Dojo</van-button>
-            <van-button onclick="t2()" class="skinbtn">Yakuza</van-button>
-            <p>
-            <van-button onclick="t3()" class="skinbtn">Malachite</van-button>
-            <van-button onclick="t4()" class="skinbtn">Pearl Abyss</van-button>
-            <p>
-            <van-button onclick="t5()" class="skinbtn">Transistor</van-button>
-            <van-button onclick="t6()" class="skinbtn">Flow</van-button>
-            <p>
-            <van-button onclick="t7()" class="skinbtn">Restless</van-button>
-            <van-button onclick="t8()" class="skinbtn">Year Of Tiger</van-button>
-
-
-            <p class="dualstxt">Dual Daggers</p>
-            <van-button onclick="d1()" class="skinbtn">Acid</van-button>
-            <van-button onclick="d2()" class="skinbtn">Demonic Steel</van-button>
-            <p>
-            <van-button onclick="d3()" class="skinbtn">Grunge</van-button>
-            <van-button onclick="d4()" class="skinbtn">Molten</van-button>
-            <p>
-            <van-button onclick="d5()" class="skinbtn">Harmony</van-button>
-            <van-button onclick="d6()" class="skinbtn">Jaws</van-button>
+			<p class="kunaitxt">Kunai</p>
+			<van-button onclick="k1()" class="skinbtn">Bone</van-button>
+			<van-button onclick="k2()" class="skinbtn">Luxury</van-button>
+			<p>
+			<van-button onclick="k3()" class="skinbtn">Poison</van-button>
+			<van-button onclick="k4()" class="skinbtn">Radiation</van-button>
+			<p>
+			<van-button onclick="k5()" class="skinbtn">Reaper</van-button>
+			<van-button onclick="k6()" class="skinbtn">ColdFlame</van-button>
+			<p>
+			<van-button onclick="k7()" class="skinbtn">SnowCamo</van-button>
+			<van-button onclick="k8()" class="skinbtn">Augustite</van-button>
 
 
 
-            <p class="kukritxt">Kukri</p>
-            <van-button onclick="kk1()" class="skinbtn">Ares</van-button>
-            <van-button onclick="kk2()" class="skinbtn">Eagle</van-button>
-            <p>
-            <van-button onclick="kk3()" class="skinbtn">Gold Trim</van-button>
-            <van-button onclick="kk4()" class="skinbtn">Antique Silver</van-button>
-            <p>
-            <van-button onclick="kk5()" class="skinbtn">Stone</van-button>
-            <van-button onclick="kk6()" class="skinbtn">DigitalBurst</van-button>
-          </div>
-        </div>
-      </div>
+			<p class="scorpiontxt">Scorpion</p>
+			<van-button onclick="s1()" class="skinbtn">Veil</van-button>
+			<van-button onclick="s2()" class="skinbtn">Sea Eye</van-button>
+			<p>
+			<van-button onclick="s3()" class="skinbtn">Scratch</van-button>
+			<van-button onclick="s4()" class="skinbtn">Starfall</van-button>
+			<p>
+			<van-button onclick="s5()" class="skinbtn">ColdFlame</van-button>
+			<van-button onclick="s6()" class="skinbtn">HolidayFrost</van-button>
 
 
-      <div id="miscf" class="fcontent">
-        
-        <div class="miscfcontent">
-          <p class="mp3txt">Coolio - Gangsta's Paradise</p>
-          <audio id="audio" src="https://rmf.muzmo.cc/get/music/20170906/Coolio_-_Gangstas_Paradise_48269950.mp3" controls="true" class="audio-1"></audio>
-        </div>
+			<p class="tantotxt">Tanto</p>
+			<van-button onclick="t1()" class="skinbtn">Dojo</van-button>
+			<van-button onclick="t2()" class="skinbtn">Yakuza</van-button>
+			<p>
+			<van-button onclick="t3()" class="skinbtn">Malachite</van-button>
+			<van-button onclick="t4()" class="skinbtn">Pearl Abyss</van-button>
+			<p>
+			<van-button onclick="t5()" class="skinbtn">Transistor</van-button>
+			<van-button onclick="t6()" class="skinbtn">Flow</van-button>
+			<p>
+			<van-button onclick="t7()" class="skinbtn">Restless</van-button>
+			<van-button onclick="t8()" class="skinbtn">Year Of Tiger</van-button>
 
-        <div class="miscfcontent">
-          <p class="mp3txt"> DVRST - Close Eyes (Slowed Reverb) (Slowed Reverb)</p>
-          <audio id="audio" src="https://rmf.muzmo.cc/get/music/20211029/DVRST_-_Close_Eyes_Slowed_Reverb_Slowed_Reverb_73239989.mp3" controls="true" class="audio-1"></audio>
-        </div>
-   
-      </div>
-    </div>
-  </div>
+
+			<p class="dualstxt">Dual Daggers</p>
+			<van-button onclick="d1()" class="skinbtn">Acid</van-button>
+			<van-button onclick="d2()" class="skinbtn">Demonic Steel</van-button>
+			<p>
+			<van-button onclick="d3()" class="skinbtn">Grunge</van-button>
+			<van-button onclick="d4()" class="skinbtn">Molten</van-button>
+			<p>
+			<van-button onclick="d5()" class="skinbtn">Harmony</van-button>
+			<van-button onclick="d6()" class="skinbtn">Jaws</van-button>
+
+
+
+			<p class="kukritxt">Kukri</p>
+			<van-button onclick="kk1()" class="skinbtn">Ares</van-button>
+			<van-button onclick="kk2()" class="skinbtn">Eagle</van-button>
+			<p>
+			<van-button onclick="kk3()" class="skinbtn">Gold Trim</van-button>
+			<van-button onclick="kk4()" class="skinbtn">Antique Silver</van-button>
+			<p>
+			<van-button onclick="kk5()" class="skinbtn">Stone</van-button>
+			<van-button onclick="kk6()" class="skinbtn">DigitalBurst</van-button>
+			</div>
+		</div>
+		</div>
+
+
+		<div id="miscf" class="fcontent">
+		
+		<div class="miscfcontent">
+			<p class="mp3txt">Coolio - Gangsta's Paradise</p>
+			<audio id="audio" src="https://rmf.muzmo.cc/get/music/20170906/Coolio_-_Gangstas_Paradise_48269950.mp3" controls="true" class="audio-1"></audio>
+		</div>
+
+		<div class="miscfcontent">
+			<p class="mp3txt"> DVRST - Close Eyes (Slowed Reverb) (Slowed Reverb)</p>
+			<audio id="audio" src="https://rmf.muzmo.cc/get/music/20211029/DVRST_-_Close_Eyes_Slowed_Reverb_Slowed_Reverb_73239989.mp3" controls="true" class="audio-1"></audio>
+		</div>
+	
+		</div>
+	</div>
+	</div>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -412,1030 +396,1123 @@
 
 <script>
 
-  /*HERE IS OUR OFFSET PATCHING CODE*/
-
-  //public bool get_CanJump() -> 0x1B39598
-  //Enable a hack at 0x1B39598 with HEX : 200080D2C0035FD6
-  // internal virtual void OnCheatingDetected() { }
-  ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", 0x135DF60, "0xC0035FD6");
-
-
-  function g1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3006','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function g2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3007','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  function g3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3008','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  function g4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3009','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  function g5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3000','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  function g6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3001','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-
-  function g7(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3002','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function g8(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3003','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  
-  function g9(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3004','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function g10(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3005','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  function g11(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3011','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function g12(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3012','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function g13(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3013','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function g14(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3014','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function g15(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3015','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function g16(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('3016','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-
-
-
-
-
-
-
-
-  function karambitgold(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('72003','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-  function karambitclaw(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('72002','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function karambitscratch(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('72006','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function karambitdragongalss(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('72004','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function karmbituniverse(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('72007','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function karambitcoldflame(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97200','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function karambitfrozen(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97201','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function karambitsnowcamo(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97203','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function karambityearoftiger(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('157200','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  function m1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('71001','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function m2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('157100','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function m3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('71004','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function m4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97100','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function m5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('71005','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function m6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('71003','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function m7(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('71002','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-
-
-
-
-
-
-
-
-
-  function j1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('73002','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function j2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('73003','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function j3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('73004','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function j4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('73006','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function j5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('73006','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function j6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('157300','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-
-
-
-
-
-  function b1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('47503','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function b2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('47502','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function b3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('57501','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function b4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('47504','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function b5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('47505','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function b6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97500','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function b7(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('157500','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-
-
-
-
-
-
-
-
-  
-  function f1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('67701','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function f2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('67702','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-  function f3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('67703','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function f4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('67704','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function f5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('67705','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function f6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97700','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function f7(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('157700','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-
-
-
-
-
-
-
-  function k1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('77813','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function k2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('77814','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function k3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('77815','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function k4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('77816','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function k5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('77817','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function k6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97800','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function k7(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97801','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function k8(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('157800','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-
-
-
-
-
-
-
-
-
-  function s1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('87919','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function s2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('87920','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function s3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('87921','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function s4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('87922','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function s5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('97900','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function s6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('157900','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-
-
-
-
-
-
-
-
-  function t1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('138000','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function t2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('138001','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function t3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('138002','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function t4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('138003','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-  function t5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('138004','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-
-  function t6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('138005','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function t7(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('148000','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-  
-  function t8(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('158000','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-
-
-
-
-
-  function d1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('170021','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function d2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('170022','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function d3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('170023','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function d4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('170024','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function d5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('180000','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function d6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('180028','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-
-
-
-
-
-
-  function kk1(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('180022','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function kk2(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('180023','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function kk3(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('180024','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function kk4(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('180025','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function kk5(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('180027','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-  function kk6(){
-    var oldskinid = prompt(" ");
-  h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
-  h5gg.editAll('200013','I64');
-  alert("Done.");
-  h5gg.clearResults();
-  }
-
-
-
-  var h5gg_jquery_stub;
-   if (typeof $ == 'undefined')
-       document.write("<script src=\"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js\"><\/script>");
+	/*HERE IS OUR OFFSET PATCHING CODE*/
+
+	//public bool get_CanJump() -> 0x1B39598
+	//Enable a hack at 0x1B39598 with HEX : 200080D2C0035FD6
+	// internal virtual void OnCheatingDetected() 
+	{ }
+	ActiveCodePatch("Frameworks/UnityFramework.framework/UnityFramework", 0x135DF60, "0xC0035FD6");
+
+
+	function g1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3006','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function g2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3007','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	function g3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3008','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	function g4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3009','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	function g5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3000','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	function g6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3001','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+
+	function g7()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3002','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function g8()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3003','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	
+	function g9()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3004','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function g10()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3005','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	function g11()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3011','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function g12()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3012','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function g13()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3013','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function g14()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3014','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function g15()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3015','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function g16()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('3016','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+
+
+
+
+
+
+
+
+	function karambitgold()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('72003','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+	function karambitclaw()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('72002','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function karambitscratch()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('72006','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function karambitdragongalss()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('72004','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function karmbituniverse()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('72007','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function karambitcoldflame()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97200','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function karambitfrozen()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97201','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function karambitsnowcamo()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97203','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function karambityearoftiger()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('157200','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	function m1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('71001','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function m2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('157100','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function m3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('71004','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function m4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97100','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function m5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('71005','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function m6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('71003','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function m7()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('71002','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+
+
+
+
+
+
+
+
+
+	function j1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('73002','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function j2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('73003','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function j3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('73004','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function j4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('73006','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function j5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('73006','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function j6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('157300','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+
+
+
+
+
+	function b1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('47503','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function b2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('47502','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function b3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('57501','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function b4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('47504','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function b5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('47505','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function b6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97500','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function b7()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('157500','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+
+
+
+
+
+
+
+
+	
+	function f1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('67701','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function f2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('67702','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+	function f3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('67703','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function f4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('67704','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function f5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('67705','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function f6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97700','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function f7()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('157700','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+
+
+
+
+
+
+
+	function k1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('77813','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function k2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('77814','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function k3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('77815','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function k4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('77816','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function k5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('77817','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function k6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97800','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function k7()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97801','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function k8()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('157800','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+
+
+
+
+
+
+
+
+
+	function s1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('87919','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function s2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('87920','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function s3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('87921','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function s4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('87922','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function s5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('97900','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function s6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('157900','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+
+
+
+
+
+
+
+
+	function t1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('138000','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function t2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('138001','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function t3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('138002','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function t4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('138003','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+	function t5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('138004','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+
+	function t6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('138005','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function t7()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('148000','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+	
+	function t8()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('158000','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+
+
+
+
+
+	function d1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('170021','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function d2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('170022','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function d3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('170023','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function d4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('170024','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function d5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('180000','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function d6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('180028','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+
+
+
+
+
+
+	function kk1()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('180022','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function kk2()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('180023','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function kk3()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('180024','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function kk4()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('180025','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function kk5()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('180027','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+	function kk6()
+	{
+	var oldskinid = prompt(" ");
+	h5gg.searchNumber(oldskinid, 'I32', '0x00000000', '0x1600000000');
+	h5gg.editAll('200013','I64');
+	alert("Done.");
+	h5gg.clearResults();
+	}
+
+
+
+	var h5gg_jquery_stub;
+	if (typeof $ == 'undefined')
+		document.write("<script src=\"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js\"><\/script>");
 
 </script>
 
 
 
-  <script>
-    function openCity(evt, cityName) {
-      // Declare all variables
-      var i, maincontent, tablinks, fcontent;
-  
-      // Get all elements with class="tabcontent" and hide them
-      maincontent = document.getElementsByClassName("maincontent");
-      for (i = 0; i < maincontent.length; i++) {
-        maincontent[i].style.display = "none";
-      }
-      fcontent = document.getElementsByClassName("fcontent");
-      for (i = 0; i < fcontent.length; i++) {
-        fcontent[i].style.display = "none";
-      }
-  
-  
-      // Get all elements with class="tablinks" and remove the class "active"
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      // Show the current tab, and add an "active" class to the button that opened the tab
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-  }
-  </script> 
-    
+	<script>
+	function openCity(evt, cityName) 
+	{
+		// Declare all variables
+		var i, maincontent, tablinks, fcontent;
+	
+		// Get all elements with class="tabcontent" and hide them
+		maincontent = document.getElementsByClassName("maincontent");
+		for (i = 0; i < maincontent.length; i++) 
+		{
+			maincontent[i].style.display = "none";
+		}
+
+		fcontent = document.getElementsByClassName("fcontent");
+		
+		for (i = 0; i < fcontent.length; i++) 
+		{
+			fcontent[i].style.display = "none";
+		}
+	
+	
+		// Get all elements with class="tablinks" and remove the class "active"
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) 
+		{
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		// Show the current tab, and add an "active" class to the button that opened the tab
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	</script> 
+
 <style>
-  
+
 .body
 {
-  left: 0px;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: pointer;
+	left: 0px;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
 }
 
 .dev
 {
-  position: absolute;
-  width: 190px;
-  height: 203px;
-  left: 118px;
-  top: 58px;
+	position: absolute;
+	width: 190px;
+	height: 203px;
+	left: 118px;
+	top: 58px;
 
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .developer
 {
-  position: absolute;
-  font-family: 'SF Pro Text', sans-serif;
-  font-size: 26px;
-  text-decoration: none;
-  width: 100px;
-  height: 100px;
-  left: 15px;
-  top: 40px;
-  line-height: 32px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #FFF;
+	position: absolute;
+	font-family: 'SF Pro Text', sans-serif;
+	font-size: 26px;
+	text-decoration: none;
+	width: 100px;
+	height: 100px;
+	left: 15px;
+	top: 40px;
+	line-height: 32px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	color: #FFF;
 }
 
 .menu
 {
-  position: relative;
-  width: 425px;
-  height: 400px;
-  zoom: 85%;
+	position: relative;
+	width: 425px;
+	height: 400px;
+	zoom: 85%;
 }
 
 .backgroundphoto
 {
-  position: absolute;
-  width: 425px;
-  height: 319px;
-  left: 0px;
-  top: 0px;
+	position: absolute;
+	width: 425px;
+	height: 319px;
+	left: 0px;
+	top: 0px;
 
-  background: url(https://github.com/daniliammo/Op3nware-H5GG/blob/main/Op3nwareHTMLBG.png?raw=true);
-  border-radius: 52px;
-  box-shadow: inset 0px 1px 1px #000000;
+	background: url(https://github.com/daniliammo/Op3nware-H5GG/blob/main/Op3nwareHTMLBG.png?raw=true);
+	border-radius: 52px;
+	box-shadow: inset 0px 1px 1px #000000;
 
 }
 
 .nav
 {
-  position: relative;
-  width: 425px;
-  height: 65px;
-  top: 0px;
-  background: linear-gradient(274.61deg, rgba(0, 0, 0, 0) 69.65%, #000 98.18%), linear-gradient(96.91deg, rgba(0, 0, 0, 0) 74.29%, #000 98.06%), #000000;
-  border-radius: 15px;
-  border: 5px solid #000000;
+	position: relative;
+	width: 425px;
+	height: 65px;
+	top: 0px;
+	background: linear-gradient(274.61deg, rgba(0, 0, 0, 0) 69.65%, #000 98.18%), linear-gradient(96.91deg, rgba(0, 0, 0, 0) 74.29%, #000 98.06%), #000000;
+	border-radius: 15px;
+	border: 5px solid #000000;
 }
 
 .navbuttons
 {
-  position: relative;
-  width: 425px;
-  height: 65px;
-  left: 3.5px;
+	position: relative;
+	width: 425px;
+	height: 65px;
+	left: 3.5px;
 }
 
 .aboutbtn, .functionsbtn, .skinchangerbtn, .miscbtn
 {
-  position: relative;
-  width: 98px;
-  height: 45px;
-  margin: 0px;
-  box-sizing: border-box;
-  top: 10px;
+	position: relative;
+	width: 98px;
+	height: 45px;
+	margin: 0px;
+	box-sizing: border-box;
+	top: 10px;
 
-  background: linear-gradient(180deg, #000 0%, #000 0%, #000 0.01%, rgba(0, 0, 0, 0.75) 39.06%, #000 72.4%, #000 100%);
-  border: 3px solid #57b846;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.4);
-  border-radius: 15px;
+	background: linear-gradient(180deg, #000 0%, #000 0%, #000 0.01%, rgba(0, 0, 0, 0.75) 39.06%, #000 72.4%, #000 100%);
+	border: 3px solid #57b846;
+	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.4);
+	border-radius: 15px;
 }
 
 .miscbtn:hover, .skinchangerbtn:hover, .functionsbtn:hover, .aboutbtn:hover
 {
-  transition: .1s;
-  background: linear-gradient(180deg, #000 -87.78%, rgba(0, 0, 0, 0.05) 80%), linear-gradient(178.8deg, #000 1.08%, #000 1.08%, #000 1.09%, rgba(0, 54, 0, 0.81) 45.3%, #000 83.03%, #000 114.27%);
-  border: 1px solid #57b846;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.4);
+	transition: .1s;
+	background: linear-gradient(180deg, #000 -87.78%, rgba(0, 0, 0, 0.05) 80%), linear-gradient(178.8deg, #000 1.08%, #000 1.08%, #000 1.09%, rgba(0, 54, 0, 0.81) 45.3%, #000 83.03%, #000 114.27%);
+	border: 1px solid #57b846;
+	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 .aboutbtn
 {
-  left: 7px;
+	left: 7px;
 }
 
 .functionsbtn
 {
-  left: 7px;
+	left: 7px;
 }
 
 .skinchangerbtn
 {
-  left: 7px;
+	left: 7px;
 }
 
 .miscbtn
 {
-  left: 7px;
+	left: 7px;
 }
 
 .main
 {
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  background: #000000;
-  border-radius: 15px;
-  width: 425px;
-  height: 319px;
-  top: 14px;
-  border: 2px solid #000000;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	position: relative;
+	background: #000000;
+	border-radius: 15px;
+	width: 425px;
+	height: 319px;
+	top: 14px;
+	border: 2px solid #000000;
 }
 
 .functionsnames
 {
-  position: absolute;
-  font-family: 'SF Pro', sans-serif;
-  font-size: 18px;
-  line-height: 0px;
-  text-align: center;
-  width: 88px;
-  height: 25px;
-  left: 4px;
-  top: 4px;
-  color: #FFF;
+	position: absolute;
+	font-family: 'SF Pro', sans-serif;
+	font-size: 18px;
+	line-height: 0px;
+	text-align: center;
+	width: 88px;
+	height: 25px;
+	left: 4px;
+	top: 4px;
+	color: #FFF;
 }
 
 
 .NRgrp, .RHgrp, .IAgrp, .MHgrp, .BAgrp, .AFgrp, .AHgrp, .FGgrp, .FPgrp, .WSgrp, .STgrp, .JHgrp, .FFgrp, .DRTSgrp, .NGgrp, .FRgrp
 {
-  margin: 0px;
-  width: 200px;
-  height: 55px;
+	margin: 0px;
+	width: 200px;
+	height: 55px;
 }
 
 .fnnc
 {
-  color: #FFF;  
-  font-family: 'SF Pro', sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  margin: 0%;
+	color: #FFF;	
+	font-family: 'SF Pro', sans-serif;
+	font-weight: 700;
+	font-size: 24px;
+	margin: 0%;
 }
 
 .fcontent
 {
-  position: absolute;
-  overflow-y: scroll;
-  display: none;
-  left: 35px;
-  top: 20px;
-  bottom: 20px;
-  width: 330px;
-  padding: 10px;
+	position: absolute;
+	overflow-y: scroll;
+	display: none;
+	left: 35px;
+	top: 20px;
+	bottom: 20px;
+	width: 330px;
+	padding: 10px;
 }
 
 .fcontent::-webkit-scrollbar 
 {
-  width: 14px;
+	width: 14px;
 }
 
 .fcontent::-webkit-scrollbar-track 
 {
-  background-color: #ff007b5a;
-  border-radius: 100px;
+	background-color: #ff007b5a;
+	border-radius: 100px;
 }
 
 .fcontent::-webkit-scrollbar-thumb 
 {
-  background-color: #6b4182d1;
-  border-radius: 100px;
+	background-color: #6b4182d1;
+	border-radius: 100px;
 }
 
 
@@ -1443,130 +1520,132 @@
 
 .checkbox
 {
-  margin: 0px;
+	margin: 0px;
 }
 
 input[type="checkbox"]
 {
-  position: relative;
-  width: 40px;
-  height: 22px;
-  -webkit-appearance: none;
-  outline: none;
-  background: #74708E;
-  border-radius: 20px;
-  transition: .5s;
-  box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+	position: relative;
+	width: 40px;
+	height: 22px;
+	-webkit-appearance: none;
+	outline: none;
+	background: #74708E;
+	border-radius: 20px;
+	transition: .5s;
+	box-shadow: inset 0 0 5px rgba(0,0,0,.2);
 }
 
 input:checked[type="checkbox"]
 {
-  background: #57b846;
+	background: #57b846;
 }
 
 input[type="checkbox"]:before
 {
-  position: absolute;
-  content: "";
-  width: 22px;
-  height: 22px;
-  top: 0;
-  left: 0;
-  transform: scale(1.1);
-  background: #ffffff;
-  border-radius: 15px;
-  transition: .4s;
-  box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+	position: absolute;
+	content: "";
+	width: 22px;
+	height: 22px;
+	top: 0;
+	left: 0;
+	transform: scale(1.1);
+	background: #ffffff;
+	border-radius: 15px;
+	transition: .4s;
+	box-shadow: inset 0 0 5px rgba(0,0,0,.2);
 }
 
 
 
 input:checked[type="checkbox"]:before
 {
-  left: 19px;
+	left: 19px;
 }
 
 .switch
 {
-  position: relative;
-  zoom: 115%;
-  width: 50px;
-  left: 225px;
-  top: -35px;
+	position: relative;
+	zoom: 115%;
+	width: 50px;
+	left: 225px;
+	top: -35px;
 }
 
 .skinchangercontent
 {
-  position: relative;
-  top: -30px;
+	position: relative;
+	top: -30px;
 }
 
 
 .skinbtn
 {
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  font-family: 'SF Pro', sans-serif;
-  color: #FFF;
-  font-weight: 400;
-  font-size: 12px;
-  width: 100px;
-  height: 25px;
-  margin-right: 25px;
-  margin-left: 25px;
-  background: color: #FFF;
-  border: 2px solid #FFF;
-  border-radius: 15px
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	font-family: 'SF Pro', sans-serif;
+	color: #FFF;
+	font-weight: 400;
+	font-size: 12px;
+	width: 100px;
+	height: 25px;
+	margin-right: 25px;
+	margin-left: 25px;
+	background: color: #FFF;
+	border: 2px solid #FFF;
+	border-radius: 15px
 }
 
 
 .glovestxt, .karambittxt, .bayonettxt, .jkommandotxt, .buterflytxt, .fliptxt, .kunaitxt, .scorpiontxt, .tantotxt, .dualstxt, .kukritxt
 {
-  position: relative;
-  align-items: center;
-  text-align: center;
-  top: 5px;
+	position: relative;
+	align-items: center;
+	text-align: center;
+	top: 5px;
 
-  color: #FFF;
-  font-family: 'SF Pro', sans-serif;
-  font-weight: 700;
-  font-size: 22px;
+	color: #FFF;
+	font-family: 'SF Pro', sans-serif;
+	font-weight: 700;
+	font-size: 22px;
 }
 
 
 audio::-webkit-media-controls-panel 
 {
-  z-index: 5;
-  background-color: #6a3eca;
-  border: 2px solid #000000;
+	z-index: 5;
+	background-color: #6a3eca;
+	border: 2px solid #000000;
 }
 
 .audio-1
 {
-  border: 3px solid #000;
-  border-radius: 15px
+	border: 3px solid #000;
+	border-radius: 15px
 }
 
 
 .mp3txt
 {
-  color: #FFF;
-  font-family: 'SF Pro', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
+	color: #FFF;
+	font-family: 'SF Pro', sans-serif;
+	font-weight: 700;
+	font-size: 12px;
 }
 
-.skinbtn:hover{
-  transition: .1s;
-  background: color: #57b846;
-  border: 2px solid #57b846;
+.skinbtn:hover
+{
+	transition: .1s;
+	background: color: #57b846;
+	border: 2px solid #57b846;
 }
-  .fncbutton:hover{
-    transition: .1s;
-    background: linear-gradient(67.42deg,#1C1C1C -8.05%,#1C1C1C -8.04%,#CB89FF 101.3%);
-    border: 2px solid #57b846;
-    
-  }
+.fncbutton:hover
+{
+transition: .1s;
+background: linear-gradient(67.42deg,#1C1C1C -8.05%,#1C1C1C -8.04%,#CB89FF 101.3%);
+border: 2px solid #57b846;
+}
+
 </style>
 </body>
