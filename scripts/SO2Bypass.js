@@ -1,3 +1,4 @@
+
 h5gg.require(7.9); 
 var h5frida = h5gg.loadPlugin("h5frida", "h5frida-15.1.24.dylib");
 
@@ -10,10 +11,6 @@ function ActiveCodePatch(fpath, vaddr, bytes)
         var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
         alert(fpath+":0x"+vaddr.toString(16)+"-не могу отредактировать!\n" + fpath+":0x"+vaddr.toString(16)+"-PatchFailed!\n" + result);return false;
     } return true;
-}
-function DeactiveCodePatch(fpath, vaddr, bytes) 
-{
-    return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
 }
 
 /*HERE IS OUR OFFSET PATCHING CODE*/
