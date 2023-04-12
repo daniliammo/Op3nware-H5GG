@@ -1,4 +1,4 @@
-
+console.log("Запуск обхода античита...")
 h5gg.require(7.9); 
 var h5frida = h5gg.loadPlugin("h5frida", "h5frida-15.1.24.dylib");
 
@@ -30,3 +30,4 @@ ActiveCodePatch(UnityFramework, 0x1DFDD64, "C0035FD6");
 ActiveCodePatch(UnityFramework, 0x1DFDEF4, "C0035FD6");
 ActiveCodePatch(UnityFramework, 0x1DFD1B4, "C0035FD6");
 ActiveCodePatch(UnityFramework, 0x1DFE5E4, "C0035FD6");
+console.log("Античит пропатчен!")
